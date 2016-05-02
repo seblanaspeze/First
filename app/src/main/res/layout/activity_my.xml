@@ -19,7 +19,8 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:id="@+id/menu_login">
+        android:id="@+id/menu_login"
+        android:visibility="invisible">
 
         <EditText
             android:layout_width="wrap_content"
@@ -95,7 +96,8 @@
             android:layout_height="wrap_content"
             android:text="@string/dressing"
             android:id="@+id/dressing"
-            android:layout_marginTop="144dp"
+            android:layout_marginTop="68dp"
+            android:background="@android:color/white"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true" />
 
@@ -105,6 +107,8 @@
             android:layout_height="wrap_content"
             android:text="@string/echange"
             android:id="@+id/echange"
+            android:background="@android:color/white"
+            android:layout_marginTop="65dp"
             android:layout_below="@+id/dressing"
             android:layout_centerHorizontal="true" />
 
@@ -114,8 +118,72 @@
             android:layout_height="wrap_content"
             android:text="@string/desgin"
             android:id="@+id/deisgn"
+            android:background="@android:color/white"
+            android:layout_marginTop="65dp"
             android:layout_below="@+id/echange"
             android:layout_centerHorizontal="true" />
     </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:id="@+id/menu_dressing"
+        android:visibility="invisible">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Favoris"
+            android:id="@+id/favoris"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="61dp"
+            android:background="@android:color/white"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Type"
+            android:id="@+id/type"
+            android:layout_below="@+id/favoris"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="52dp"
+            android:background="@android:color/white"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Couleur"
+            android:id="@+id/couleur"
+            android:layout_below="@+id/type"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="61dp"
+            android:background="@android:color/white"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Trie Multiple"
+            android:id="@+id/multiple"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="53dp"
+            android:background="@android:color/white"
+            android:singleLine="false" />
+
+
+    </RelativeLayout>
+
+    <ListView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/resultatTrie"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
 </RelativeLayout>
 
