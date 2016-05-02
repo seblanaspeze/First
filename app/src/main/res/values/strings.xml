@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">SeminaireMai</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings1">Deconnexion</string>
+    <string name="action_settings2">Setting</string>
+
+    //Mots relatifs au login
+    <string name="identifiant">Identifiant</string>
+    <string name="Password">Password</string>
+    <string name="valider">Entrer</string>
+    <string name="id_faux">Identifiant errone</string>
+    <string name="pass_faux">Mot de passe errone</string>
+    <string name="login_réussis">Bien joué !! </string>
+
+    // Mots relatifs au menu des actions
+    <string name="dressing">Mon Dressing </string>
+    <string name="desgin">Design tes fringues </string>
+    <string name="echange">Go shopping </string>
+
+</resources>
