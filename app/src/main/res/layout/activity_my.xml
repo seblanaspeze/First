@@ -183,7 +183,9 @@
         android:id="@+id/resultatTrie"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:background="#ffffffff"
+        android:cacheColorHint="#ffff4d57" />
 
 </RelativeLayout>
 
