@@ -4,7 +4,7 @@
     <string name="app_name">SeminaireMai</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings1">Deconnexion</string>
-    <string name="action_settings2">Setting</string>
+    <string name="action_settings2">Connexion Bluetooth</string>
 
     //Mots relatifs au login
     <string name="identifiant">Identifiant</string>

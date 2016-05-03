@@ -2,19 +2,25 @@ package com.example.lanas.seminairemai;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothDevice;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Set;
 
 import CodeSource.Dressing.Dressing;
 import CodeSource.Dressing.ScenarioSem3;
@@ -46,6 +52,10 @@ public class MyActivity extends Activity {
     Button multiple;
     ListView resultatTrie;
 
+    // Declaration des attributs relatif au bluetooth
+    RelativeLayout menu_bluetooth;
+    private BluetoothAdapter BA;
+    private Set<BluetoothDevice> pairedDevices;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,12 +90,17 @@ public class MyActivity extends Activity {
         menu_action.setVisibility(View.INVISIBLE);
         menu_dressing.setVisibility(View.INVISIBLE);
 
+        //initialisation bluetooth
+
         // Initialisation du scenario
 
         final Dressing monDressing = ScenarioSem3.senario();
         final ArrayList<String> trie1 = new ArrayList<String>();
         final ArrayAdapter<String> liste = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,trie1);
 
+        // Initialisation du bluetooth
+
+        BA = BluetoothAdapter.getDefaultAdapter();
 
         // Méthode permettant la validation du mots de passe et de l'identifiant.
 
@@ -142,15 +157,69 @@ public class MyActivity extends Activity {
                 int s = trie.size();
                 for (int i = 0; i < s; i++){
                     trie1.add(trie.get(i).getNom());
+                    System.out.println("favori");
                 }
+                trie1.add("Retour");
 
                 resultatTrie.setAdapter(liste);
                 menu_dressing.setVisibility(v.INVISIBLE);
             }
         });
 
+        resultatTrie.setOnItemClickListener(new ListView.OnItemClickListener(){
+
+            @Override
+            public void onItemClick(AdapterView<?> av, View v, int pos, long id){
+
+                String mot = (String) av.getItemAtPosition(pos);
+
+                if (mot.compareTo("Retour") == 0){
+
+                    resultatTrie.setVisibility(v.INVISIBLE);
+                    menu_dressing.setVisibility(v.VISIBLE);
+                    trie1.clear();
+                }
+
+            }
+        });
     }
 
+
+    public void on(View v){
+        if (!BA.isEnabled()) {
+            Intent turnOn = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+            startActivityForResult(turnOn, 0);
+            Toast.makeText(getApplicationContext(), "Turned on", Toast.LENGTH_LONG).show();
+        }
+        else
+        {
+            Toast.makeText(getApplicationContext(),"Already on", Toast.LENGTH_LONG).show();
+        }
+
+
+    }
+
+    public void off(View v){
+        BA.disable();
+        Toast.makeText(getApplicationContext(),"Turned off" ,Toast.LENGTH_LONG).show();
+    }
+
+    public  void visible(View v){
+        Intent getVisible = new Intent(BluetoothAdapter.ACTION_REQUEST_DISCOVERABLE);
+        startActivityForResult(getVisible, 0);
+    }
+
+    public void list(View v){
+        pairedDevices = BA.getBondedDevices();
+        ArrayList list = new ArrayList();
+
+        for(BluetoothDevice bt : pairedDevices)
+            list.add(bt.getName());
+        Toast.makeText(getApplicationContext(),"Showing Paired Devices",Toast.LENGTH_SHORT).show();
+
+        final ArrayAdapter adapter = new ArrayAdapter(this,android.R.layout.simple_list_item_1, list);
+        resultatTrie.setAdapter(adapter);
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -170,6 +239,17 @@ public class MyActivity extends Activity {
             menu_action.setVisibility(View.INVISIBLE);
             menu_login.setVisibility(View.VISIBLE);
             racine_arbre.setBackgroundResource(R.drawable.login);
+        }
+        if (id == R.id.action_settings2 ){
+
+            menu_dressing.setVisibility(View.INVISIBLE);
+            menu_login.setVisibility(View.INVISIBLE);
+            menu_action.setVisibility(View.INVISIBLE);
+
+
+
+
+
         }
         return super.onOptionsItemSelected(item);
     }

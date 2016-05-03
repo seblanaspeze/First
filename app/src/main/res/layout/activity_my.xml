@@ -185,7 +185,60 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:background="#ffffffff"
-        android:cacheColorHint="#ffff4d57" />
+        android:cacheColorHint="#ffff4d57"
+        android:visibility="invisible"/>
 
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:id="@+id/menu_bluetooth">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Allumer le Bluetooth"
+            android:id="@+id/on"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="46dp"
+            android:background="#ffffffff"
+            android:onClick="on" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Etteindre Bluetooth"
+            android:id="@+id/off"
+            android:layout_marginTop="66dp"
+            android:background="#ffffffff"
+            android:layout_below="@+id/on"
+            android:layout_alignLeft="@+id/on"
+            android:layout_alignStart="@+id/on"
+            android:onClick="off" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Chercher de nouveau appareil"
+            android:id="@+id/rechercheCo"
+            android:layout_below="@+id/off"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="68dp"
+            android:background="#ffffffff" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Liste des appareils"
+            android:id="@+id/list"
+            android:layout_below="@+id/rechercheCo"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="52dp"
+            android:background="#ffffffff"
+            android:onClick="list" />
+    </RelativeLayout>
 </RelativeLayout>
 
